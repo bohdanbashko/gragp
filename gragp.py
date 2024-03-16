@@ -41,7 +41,7 @@ def options():
     while True:
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
-        SCREEN.fill("white")
+        SCREEN.blit(BG, (0, 0))
 
         OPTIONS_TEXT = get_font(45).render("This is the OPTIONS screen.", True, "Black")
         OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 260))
@@ -72,11 +72,11 @@ def main_menu():
         MENU_TEXT = get_font(100).render("MAIN MENU", True, "#b68f40")
         MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
-        PLAY_BUTTON = Button(image=pygame.image.load("gragp/assets/Play Rect.png"), pos=(640, 250), 
+        PLAY_BUTTON = Button(image=pygame.image.load("gragp/assets/Play Rect.png"), pos=(330, 400), 
                             text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        OPTIONS_BUTTON = Button(image=pygame.image.load("gragp/assets/Options Rect.png"), pos=(640, 400), 
+        OPTIONS_BUTTON = Button(image=pygame.image.load("gragp/assets/Options Rect.png"), pos=(330, 550), 
                             text_input="OPTIONS", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        QUIT_BUTTON = Button(image=pygame.image.load("gragp/assets/Quit Rect.png"), pos=(640, 550), 
+        QUIT_BUTTON = Button(image=pygame.image.load("gragp/assets/Quit Rect.png"), pos=(330, 700), 
                             text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
