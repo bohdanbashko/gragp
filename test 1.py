@@ -25,7 +25,7 @@ ENEMY_WIDTH = 50
 ENEMY_HEIGHT = 50
 
 # Ability cooldowns (in frames)
-ABILITY_COOLDOWN = 60
+ABILITY_COOLDOWN = 1
 
 # HP bar dimensions
 HP_BAR_WIDTH = 100
@@ -51,10 +51,11 @@ class Player(pygame.sprite.Sprite):
 
     def use_ability(self, target):
         if self.cooldown == 0:
-            # Implement ability logic here
-            target.hp -= 10  # Example: Ability reduces 10 HP
-            print("Ability used! Target HP:", target.hp)
-            self.cooldown = ABILITY_COOLDOWN
+            if target.hp > MIN_HP:
+                # Implement ability logic here
+                target.hp -= 10  # Example: Ability reduces 10 HP
+                print("Ability used! Target HP:", target.hp)
+                self.cooldown = ABILITY_COOLDOWN
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, color, x, y):
@@ -76,11 +77,11 @@ def draw_hp_bar(surface, entity):
 
 def main_menu(screen):
     # Load background image
-    bg = pygame.image.load("gragp/assets/menu background.png")
+    bg = pygame.image.load("assets/menu background.png")
 
     # Function to get font
     def get_font(size):
-        return pygame.font.Font("gragp/assets/font.ttf", size)
+        return pygame.font.Font("assets/font.ttf", size)
 
     # Function to handle the main menu
     while True:
@@ -91,11 +92,11 @@ def main_menu(screen):
         menu_text = get_font(100).render("MAIN MENU", True, "#b68f40")
         menu_rect = menu_text.get_rect(center=(SCREEN_WIDTH // 2, 100))
 
-        play_button = Button(image=pygame.image.load("gragp/assets/Play Rect.png"), pos=(330, 400), 
+        play_button = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(330, 400), 
                             text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        options_button = Button(image=pygame.image.load("gragp/assets/Options Rect.png"), pos=(330, 550), 
+        options_button = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(330, 550), 
                             text_input="OPTIONS", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        quit_button = Button(image=pygame.image.load("gragp/assets/Quit Rect.png"), pos=(330, 700), 
+        quit_button = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(330, 700), 
                             text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
         screen.blit(menu_text, menu_rect)
